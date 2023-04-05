@@ -1,6 +1,8 @@
 package ar.com.codoacodo.clase9.clean.application;
 
-import ar.com.codoacodo.clase9.clean.infrastructure.DynamoDBPlantillaRepository;
+import ar.com.codoacodo.clase9.clean.domain.PlantillaEnum;
+import ar.com.codoacodo.clase9.clean.domain.PlantillaRepository;
+import ar.com.codoacodo.clase9.clean.infrastructure.DBBuilder;
 
 public class MainPlantilla {
 
@@ -9,8 +11,13 @@ public class MainPlantilla {
 		//recibo el id de la plantilla
 		Long id = Long.parseLong(args[0]);//-10
 		
+		//variable de sistema:
+		String dbImpl  = System.getProperty("NOMBRE_VARIABLE");
+		
+		PlantillaEnum dbNameEnum = PlantillaEnum.valueOf(dbImpl);
+		
 		//buscar la plantilla en la base de datos
-		var repository = new DynamoDBPlantillaRepository("documento_plantilla");
+		PlantillaRepository repository = DBBuilder.buildRepository(dbNameEnum);//caso num null
 		
 		//necesito un caso de uso: Application
 		var useCase = new BuscarPlantilla(repository);

@@ -24,10 +24,8 @@ public class MysqlPlantillaRepository implements PlantillaRepository {
 	public PlantillaDomain getById(Long id) {
 		
 		//me contecto a la base o busco en el servicio tal o parseo un archivo
-		var plantilla = new PlantillaDomain();
-		plantilla.setId(1l);
+		var plantilla = new PlantillaDomain(1l, "aviso");
 		plantilla.setFechaCreacion(LocalDate.now());
-		plantilla.setTipo("aviso");
 		plantilla.setHabilitado(true);
 		
 		return plantilla;
