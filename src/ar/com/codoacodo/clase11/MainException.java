@@ -1,7 +1,5 @@
 package ar.com.codoacodo.clase11;
-
 import ar.com.codoacodo.clase12.OtraException;
-
 public class MainException {
 
 	public static void main(String[] args) {
@@ -41,7 +39,7 @@ public class MainException {
 		System.out.println("OK");
 	}
 
-	public static void obtenerDatos(int valor) throws MiTimeoutException, OtraException {
+	public static void obtenerDatos(int valor) throws MiTimeoutException {
 		//suponemos tarda mucho y lazamos un error
 		
 		if(valor < 10) {

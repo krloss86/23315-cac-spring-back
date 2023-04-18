@@ -9,6 +9,14 @@ public class PlantillaDomain {
 	private String plantilla;
 	private LocalDate fechaCreacion;
 	private String tipo;
+	
+	public PlantillaDomain(Long id, String plantilla) {
+		if(id == null || plantilla == null) {
+			throw new IllegalArgumentException("Debe indicar id y plantilla");
+		}
+		this.id = id;
+		this.plantilla = plantilla;
+	}
 	public Long getId() {
 		return id;
 	}
