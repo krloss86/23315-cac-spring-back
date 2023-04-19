@@ -30,5 +30,10 @@ public class MapMain {
 		mapa4.remove(IdiomaEnum.CHINO);
 		System.out.println(mapa4.keySet());
 		
+		//linkedlist
+		//queue
+		//> priorityqueue
+		// comporators/comparable
+		//treeset
 	}
 }
