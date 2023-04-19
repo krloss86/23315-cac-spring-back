@@ -26,8 +26,6 @@ public class MainException {
 				break;
 			}catch(MiTimeoutException e) {
 				valor+= 7;
-			}catch(OtraException e) {
-				valor-= 2;
 			}finally {
 				//siempre, no importa si fue por try o por algun catch!
 				System.out.println("viene siempre");

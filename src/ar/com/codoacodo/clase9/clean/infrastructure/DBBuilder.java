@@ -1,26 +1,35 @@
 package ar.com.codoacodo.clase9.clean.infrastructure;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import ar.com.codoacodo.clase9.clean.domain.PlantillaEnum;
 import ar.com.codoacodo.clase9.clean.domain.PlantillaRepository;
 
 public class DBBuilder {
-
+	
+	private static Map<PlantillaEnum, PlantillaRepository> mapPlantilla = build();
+	
+	private static Map<PlantillaEnum, PlantillaRepository> build() {
+		var plantillas = new HashMap<PlantillaEnum, PlantillaRepository>();
+		plantillas.put(PlantillaEnum.DYNAMO, new DynamoDBPlantillaRepository("documento_plantilla"));
+		plantillas.put(PlantillaEnum.MYSQL, new MysqlPlantillaRepository("table_plantilla"));
+		plantillas.put(PlantillaEnum.TEXTO, new TextoPlantillaRepository());
+		return plantillas;
+	}
+	
 	public static PlantillaRepository buildRepository(PlantillaEnum _enum) {
 		
-		if(_enum == null )
+		if(_enum == null ) {
 			throw new IllegalArgumentException("Debe inidicar un enum");
-		
-		//switch!!
-		if(_enum.equals(PlantillaEnum.DYNAMO)) {
-			return new DynamoDBPlantillaRepository("documento_plantilla");
-		}
-		if(_enum.equals(PlantillaEnum.MYSQL)) {
-			return new MysqlPlantillaRepository("table_plantilla");
-		}
-		if(_enum.equals(PlantillaEnum.TEXTO)) {
-			return new TextoPlantillaRepository();
 		}
 		
-		throw new IllegalArgumentException("NO existe implementacion para el enum: " + _enum);
+		if(!mapPlantilla.containsKey(_enum)) {
+			throw new IllegalArgumentException("NO existe implementacion para el enum: " + _enum);
+		}
+		
+		return mapPlantilla.get(_enum);
+		
 	}
+
 }

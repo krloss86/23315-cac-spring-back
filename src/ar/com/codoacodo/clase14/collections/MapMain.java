@@ -1,40 +1,34 @@
 package ar.com.codoacodo.clase14.collections;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import ar.com.codoacodo.clase10.repaso.Chino;
 import ar.com.codoacodo.clase10.repaso.Espanol;
 import ar.com.codoacodo.clase10.repaso.IIdioma;
+import ar.com.codoacodo.clase10.repaso.IdiomaEnum;
 import ar.com.codoacodo.clase10.repaso.Ingles;
 
 public class MapMain {
 
 	public static void main(String[] args) {
 
-		//crear un mapa!!!!
-		Map<String, Integer> mapa = new HashMap<>();
-		mapa.put("lunes", 1);
-		mapa.put("martes", 2);
-		mapa.put("miercoles", 3);
-		mapa.put("jueves", 4);
-		mapa.put("viernes", 5);
-		mapa.put("sabado", 6);
-		mapa.put("domingo", 7);
+		var mapa4 = new LinkedHashMap<IdiomaEnum,IIdioma>();
+		mapa4.put(IdiomaEnum.INGLES, new Ingles());
+		mapa4.put(IdiomaEnum.ESPANOL, new Espanol());
+		mapa4.put(IdiomaEnum.CHINO, new Chino());
 		
-		var mapa2 = new HashMap<String,String>();
-		mapa2.put("LUNES", "T1");
-		mapa2.put("MARTES", "T1");
-		mapa2.put("MIERCOLES", "T1");
-		mapa2.put("MIERCOLES", "T2");
+		//recorrer de otra forma el mapa: Set<Entry<K,V>>
+		var entries = mapa4.entrySet();
+		for(Entry<IdiomaEnum,IIdioma> entry : entries) {
+			entry.getValue().execute(entry.getKey().toString());//IIdioma
+		}
 		
-		var mapa3 = new HashMap<String,IIdioma>();
-		mapa3.put("espanol", new Espanol());
-		mapa3.put("ingles", new Ingles());
-		mapa3.put("chino", new Chino());
-		
-		var mapa4 = new HashMap<String,IIdioma>();
+		//remove
+		mapa4.remove(IdiomaEnum.CHINO);
+		System.out.println(mapa4.keySet());
 		
 	}
-
 }
