@@ -8,6 +8,7 @@ public class Turno implements Comparable<Turno>{
 	private String nombre;
 	private boolean prioridad;
 	private LocalDateTime fechaFin;
+	private Integer edad;
 	
 	public Turno(String nombre, boolean prioridad) {
 		this.fecha = LocalDateTime.now();
@@ -18,6 +19,12 @@ public class Turno implements Comparable<Turno>{
 		this.fecha = fecha;
 		this.nombre = nombre;
 		this.prioridad = prioridad;
+	}
+	public Turno(LocalDateTime fecha, String nombre, boolean prioridad,Integer edad) {
+		this.fecha = fecha;
+		this.nombre = nombre;
+		this.prioridad = prioridad;
+		this.edad = edad;
 	}
 	public LocalDateTime getFecha() {
 		return fecha;
@@ -46,9 +53,9 @@ public class Turno implements Comparable<Turno>{
 	@Override
 	public String toString() {
 		return "Turno [fecha=" + fecha + ", nombre=" + nombre + ", prioridad=" + prioridad + ", fechaFin=" + fechaFin
-				+ "]";
+				+ ", edad=" + edad + "]";
 	}
-	
+	//ALT+SHIT+S
 	//[3,5]
 	/*
 	 * < 0 
@@ -70,4 +77,9 @@ public class Turno implements Comparable<Turno>{
 		}
 		return -1;
 	}
+	public Integer getEdad() {
+		return edad;
+	}
+	
+	
 }
